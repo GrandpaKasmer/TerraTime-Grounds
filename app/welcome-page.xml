@@ -1,0 +1,35 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" class="bg-gray-100">
+    <ActionBar title="TerraTime - Grounds" class="bg-green-600 text-white" />
+    
+    <GridLayout rows="*,*,*" columns="*,*" class="p-4 gap-4">
+        <!-- Mowing -->
+        <StackLayout row="0" col="0" tap="{{ onTaskSelect }}" taskType="mowing" class="bg-white rounded-lg p-4 shadow-md">
+            <Image src="~/assets/images/mowing.png" class="w-24 h-24" />
+            <Label text="{{ 'tasks.mowing' | translate }}" class="text-center font-medium" />
+        </StackLayout>
+        
+        <!-- Trash Collection -->
+        <StackLayout row="0" col="1" tap="{{ onTaskSelect }}" taskType="trash" class="bg-white rounded-lg p-4 shadow-md">
+            <Image src="~/assets/images/trash.png" class="w-24 h-24" />
+            <Label text="{{ 'tasks.trash' | translate }}" class="text-center font-medium" />
+        </StackLayout>
+        
+        <!-- Trimming -->
+        <StackLayout row="1" col="0" tap="{{ onTaskSelect }}" taskType="trimming" class="bg-white rounded-lg p-4 shadow-md">
+            <Image src="~/assets/images/trimming.png" class="w-24 h-24" />
+            <Label text="{{ 'tasks.trimming' | translate }}" class="text-center font-medium" />
+        </StackLayout>
+        
+        <!-- Leaf Blowing -->
+        <StackLayout row="1" col="1" tap="{{ onTaskSelect }}" taskType="blowing" class="bg-white rounded-lg p-4 shadow-md">
+            <Image src="~/assets/images/blowing.png" class="w-24 h-24" />
+            <Label text="{{ 'tasks.blowing' | translate }}" class="text-center font-medium" />
+        </StackLayout>
+        
+        <!-- Safety/Inspection -->
+        <StackLayout row="2" col="0" colSpan="2" tap="{{ onTaskSelect }}" taskType="safety" class="bg-white rounded-lg p-4 shadow-md">
+            <Image src="~/assets/images/safety.png" class="w-24 h-24" />
+            <Label text="{{ 'tasks.safety' | translate }}" class="text-center font-medium" />
+        </StackLayout>
+    </GridLayout>
+</Page>

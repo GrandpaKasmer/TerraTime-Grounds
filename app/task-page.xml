@@ -1,0 +1,20 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" class="bg-gray-100">
+    <ActionBar title="{{ taskTitle }}" class="bg-green-600 text-white" />
+    
+    <StackLayout class="p-4 space-y-4">
+        <Image src="{{ taskImage }}" class="w-32 h-32 mx-auto" />
+        
+        <Label text="{{ timerDisplay }}" class="text-3xl text-center" />
+        
+        <Button text="{{ isRunning ? ('tasks.pause' | translate) : ('tasks.start' | translate) }}" 
+                tap="{{ toggleTimer }}" 
+                class="{{ isRunning ? 'bg-yellow-500' : 'bg-green-500' }} text-white p-4 rounded-lg" />
+        
+        <Button text="{{ 'tasks.stop' | translate }}" 
+                tap="{{ stopTask }}" 
+                class="bg-red-500 text-white p-4 rounded-lg" 
+                visibility="{{ isRunning ? 'visible' : 'collapsed' }}" />
+                
+        <ActivityIndicator busy="{{ isLoading }}" class="text-green-500" />
+    </StackLayout>
+</Page>

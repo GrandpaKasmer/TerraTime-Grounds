@@ -1,0 +1,41 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" class="bg-gray-100">
+    <ActionBar title="Task Completed" class="bg-green-600 text-white" />
+    
+    <ScrollView>
+        <StackLayout class="p-4 space-y-4">
+            <Label text="{{ taskTitle }}" class="text-xl text-center font-bold" />
+            <Label text="{{ timerDisplay }}" class="text-lg text-center text-gray-600" />
+            
+            <!-- Photo Section -->
+            <StackLayout class="bg-white p-4 rounded-lg shadow-md">
+                <GridLayout columns="auto, *" rows="auto" class="mb-2">
+                    <Image src="~/assets/images/camera-icon.png" width="40" height="40" class="mr-2" col="0" />
+                    <Label text="Add Photo" class="text-lg font-medium" verticalAlignment="center" col="1" />
+                </GridLayout>
+                <Button text="Take Photo" tap="{{ takePhoto }}" class="bg-blue-500 text-white p-3 rounded-lg my-2" />
+                <Image src="{{ photoUrl }}" visibility="{{ photoUrl ? 'visible' : 'collapsed' }}" 
+                       class="h-48 rounded-lg" stretch="aspectFill" />
+                <Label text="Photo added" visibility="{{ photoUrl ? 'visible' : 'collapsed' }}" 
+                       class="text-green-600 text-center" />
+            </StackLayout>
+            
+            <!-- Voice Note Section -->
+            <StackLayout class="bg-white p-4 rounded-lg shadow-md">
+                <GridLayout columns="auto, *" rows="auto" class="mb-2">
+                    <Image src="~/assets/images/microphone-icon.png" width="40" height="40" class="mr-2" col="0" />
+                    <Label text="Add Voice Note" class="text-lg font-medium" verticalAlignment="center" col="1" />
+                </GridLayout>
+                <Button text="{{ isRecording ? 'Recording...' : 'Record Voice Note' }}" 
+                        tap="{{ recordVoice }}" 
+                        class="{{ isRecording ? 'bg-red-500' : 'bg-blue-500' }} text-white p-3 rounded-lg my-2" />
+                <Label text="{{ voiceNotes }}" visibility="{{ voiceNotes ? 'visible' : 'collapsed' }}" 
+                       class="text-gray-700 p-2 bg-gray-100 rounded" textWrap="true" />
+            </StackLayout>
+            
+            <!-- Submit Button -->
+            <Button text="Submit Task" tap="{{ submitTask }}" class="bg-green-600 text-white p-4 rounded-lg mt-4" />
+            
+            <ActivityIndicator busy="{{ isLoading }}" class="text-green-500" />
+        </StackLayout>
+    </ScrollView>
+</Page>

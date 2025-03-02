@@ -1,0 +1,30 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" class="bg-gray-100">
+    <ActionBar title="{{ worker.full_name || worker.phone_number }}" class="bg-green-600 text-white">
+        <NavigationButton text="{{ 'supervisor.back' | translate }}" android.systemIcon="ic_menu_back" />
+    </ActionBar>
+    
+    <GridLayout rows="auto, *">
+        <!-- Worker Info -->
+        <StackLayout row="0" class="p-4 bg-white m-2 rounded-lg shadow-md">
+            <Image src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png" width="80" height="80" class="mx-auto" />
+            <Label text="{{ worker.full_name || worker.phone_number }}" class="text-center font-bold text-lg" />
+            <Label text="{{ worker.phone_number }}" class="text-center text-gray-500" />
+        </StackLayout>
+        
+        <!-- Worker Tasks -->
+        <GridLayout row="1">
+            <ListView items="{{ tasks }}" class="bg-gray-100">
+                <ListView.itemTemplate>
+                    <GridLayout columns="auto, *, auto" rows="auto, auto" class="p-4 bg-white m-2 rounded-lg shadow-sm">
+                        <Image src="{{ '~/assets/images/' + task_type + '.png' }}" width="40" height="40" class="mr-2" rowSpan="2" col="0" />
+                        <Label text="{{ taskName }}" class="font-medium" row="0" col="1" />
+                        <Label text="{{ formattedDate }}" class="text-gray-500" row="1" col="1" />
+                        <Label text="{{ formattedDuration }}" class="text-gray-500 text-right" row="0" col="2" />
+                    </GridLayout>
+                </ListView.itemTemplate>
+            </ListView>
+            <Label text="{{ 'supervisor.noTasks' | translate }}" class="text-center text-gray-500 p-4" 
+                   visibility="{{ tasks.length ? 'collapsed' : 'visible' }}" />
+        </GridLayout>
+    </GridLayout>
+</Page>

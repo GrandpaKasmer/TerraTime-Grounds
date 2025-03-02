@@ -1,0 +1,51 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" class="bg-gray-100">
+    <ActionBar title="TerraTime - Grounds" class="bg-green-600 text-white" />
+    
+    <TabView selectedIndex="{{ selectedTabIndex }}" class="bg-gray-100">
+        <!-- Workers Tab -->
+        <TabViewItem title="{{ 'supervisor.workers' | translate }}">
+            <GridLayout>
+                <ListView items="{{ workers }}" class="bg-gray-100" itemTap="{{ onWorkerTap }}">
+                    <ListView.itemTemplate>
+                        <GridLayout columns="auto, *, auto" class="p-4 bg-white m-2 rounded-lg shadow-sm">
+                            <Image src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png" width="40" height="40" class="mr-2" col="0" />
+                            <StackLayout col="1">
+                                <Label text="{{ full_name || phone_number }}" class="font-medium" />
+                                <Label text="{{ phone_number }}" class="text-gray-500" />
+                            </StackLayout>
+                            <Label text="›" class="text-2xl text-gray-400" col="2" />
+                        </GridLayout>
+                    </ListView.itemTemplate>
+                </ListView>
+                <Label text="{{ 'supervisor.noWorkers' | translate }}" class="text-center text-gray-500 p-4" 
+                       visibility="{{ workers.length ? 'collapsed' : 'visible' }}" />
+            </GridLayout>
+        </TabViewItem>
+        
+        <!-- Tasks Tab -->
+        <TabViewItem title="{{ 'supervisor.tasks' | translate }}">
+            <GridLayout>
+                <ListView items="{{ tasks }}" class="bg-gray-100" itemTap="{{ onTaskTap }}">
+                    <ListView.itemTemplate>
+                        <GridLayout columns="auto, *, auto" rows="auto, auto" class="p-4 bg-white m-2 rounded-lg shadow-sm">
+                            <Image src="{{ '~/assets/images/' + task_type + '.png' }}" width="40" height="40" class="mr-2" rowSpan="2" col="0" />
+                            <Label text="{{ workerName }}" class="font-medium" row="0" col="1" />
+                            <Label text="{{ taskName }}" class="text-gray-500" row="1" col="1" />
+                            <Label text="{{ formattedDate }}" class="text-gray-500 text-right" row="0" col="2" />
+                            <Label text="{{ formattedDuration }}" class="text-gray-500 text-right" row="1" col="2" />
+                        </GridLayout>
+                    </ListView.itemTemplate>
+                </ListView>
+                <Label text="{{ 'supervisor.noTasks' | translate }}" class="text-center text-gray-500 p-4" 
+                       visibility="{{ tasks.length ? 'collapsed' : 'visible' }}" />
+            </GridLayout>
+        </TabViewItem>
+        
+        <!-- Reports Tab -->
+        <TabViewItem title="{{ 'supervisor.reports' | translate }}">
+            <StackLayout class="p-4">
+                <Label text="Coming Soon" class="text-center text-gray-500 p-4" />
+            </StackLayout>
+        </TabViewItem>
+    </TabView>
+</Page>

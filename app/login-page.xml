@@ -1,0 +1,53 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" class="bg-gray-100">
+    <ActionBar title="TerraTime - Grounds" class="bg-green-600 text-white" />
+    
+    <StackLayout class="p-4 space-y-4">
+        <Image src="https://i.ibb.co/0pTS2KrK/Tt-app-Logo.png" class="w-32 h-32 mx-auto" />
+        
+        <!-- Phone Number Input -->
+        <StackLayout visibility="{{ !isVerifying ? 'visible' : 'collapsed' }}" class="space-y-4">
+            <TextField hint="{{ 'login.phoneHint' | translate }}" text="{{ phoneNumber }}" keyboardType="phone" class="p-4 bg-white rounded-lg" />
+            <Button text="{{ 'login.sendCodeButton' | translate }}" tap="{{ sendVerificationCode }}" class="bg-green-500 text-white p-4 rounded-lg" />
+        </StackLayout>
+        
+        <!-- Verification Code Input -->
+        <StackLayout visibility="{{ isVerifying ? 'visible' : 'collapsed' }}" class="space-y-4">
+            <TextField hint="{{ 'login.codeHint' | translate }}" text="{{ verificationCode }}" keyboardType="number" class="p-4 bg-white rounded-lg" />
+            <Button text="{{ 'login.verifyCodeButton' | translate }}" tap="{{ verifyCode }}" class="bg-green-500 text-white p-4 rounded-lg" />
+            <Button text="{{ 'login.signupButton' | translate }}" tap="{{ showSignup }}" visibility="{{ !userExists ? 'visible' : 'collapsed' }}" 
+                    class="bg-blue-500 text-white p-3 rounded-lg" />
+        </StackLayout>
+        
+        <!-- Role Selection (only shown during signup) -->
+        <StackLayout visibility="{{ isSigningUp && isVerified ? 'visible' : 'collapsed' }}" class="space-y-4">
+            <Label text="{{ 'login.roleSelection' | translate }}" class="text-center font-medium" />
+            <GridLayout rows="auto" columns="*, *" class="gap-2">
+                <Button text="{{ 'login.worker' | translate }}" tap="{{ selectRole }}" role="worker" 
+                        class="{{ selectedRole === 'worker' ? 'bg-green-500' : 'bg-gray-400' }} text-white p-4 rounded-lg" col="0" />
+                <Button text="{{ 'login.supervisor' | translate }}" tap="{{ selectRole }}" role="supervisor" 
+                        class="{{ selectedRole === 'supervisor' ? 'bg-green-500' : 'bg-gray-400' }} text-white p-4 rounded-lg" col="1" />
+            </GridLayout>
+        </StackLayout>
+        
+        <!-- Language Selection (only shown during signup) -->
+        <StackLayout visibility="{{ isSigningUp && isVerified ? 'visible' : 'collapsed' }}" class="space-y-4">
+            <Label text="Preferred Language / Idioma Preferido" class="text-center font-medium" />
+            <GridLayout rows="auto" columns="*, *" class="gap-2">
+                <Button text="English" tap="{{ selectLanguage }}" language="en" 
+                        class="{{ preferredLanguage === 'en' ? 'bg-green-500' : 'bg-gray-400' }} text-white p-4 rounded-lg" col="0" />
+                <Button text="Español" tap="{{ selectLanguage }}" language="es" 
+                        class="{{ preferredLanguage === 'es' ? 'bg-green-500' : 'bg-gray-400' }} text-white p-4 rounded-lg" col="1" />
+            </GridLayout>
+        </StackLayout>
+        
+        <!-- Complete Registration Button (only shown during signup after verification) -->
+        <Button text="{{ 'login.signupButton' | translate }}" tap="{{ completeSignup }}" 
+                visibility="{{ isSigningUp && isVerified ? 'visible' : 'collapsed' }}" 
+                class="bg-blue-500 text-white p-4 rounded-lg" />
+        
+        <ActivityIndicator busy="{{ isLoading }}" class="text-green-500" />
+        
+        <Label text="{{ errorMessage }}" class="text-red-500 text-center" textWrap="true" 
+               visibility="{{ errorMessage ? 'visible' : 'collapsed' }}" />
+    </StackLayout>
+</Page>

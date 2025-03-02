@@ -1,0 +1,45 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" class="bg-gray-100">
+    <ActionBar title="{{ 'supervisor.taskDetails' | translate }}" class="bg-green-600 text-white">
+        <NavigationButton text="{{ 'supervisor.back' | translate }}" android.systemIcon="ic_menu_back" />
+    </ActionBar>
+    
+    <ScrollView>
+        <StackLayout class="p-4 space-y-4">
+            <Image src="{{ '~/assets/images/' + task.task_type + '.png' }}" class="w-32 h-32 mx-auto" />
+            
+            <GridLayout rows="auto, auto" columns="*, *" class="bg-white p-4 rounded-lg shadow-md">
+                <Label text="{{ 'supervisor.worker' | translate }}" class="font-medium" row="0" col="0" />
+                <Label text="{{ task.workerName }}" class="text-right" row="0" col="1" />
+                
+                <Label text="{{ 'supervisor.taskType' | translate }}" class="font-medium" row="1" col="0" />
+                <Label text="{{ task.taskName }}" class="text-right" row="1" col="1" />
+            </GridLayout>
+            
+            <GridLayout rows="auto, auto, auto" columns="*, *" class="bg-white p-4 rounded-lg shadow-md">
+                <Label text="{{ 'supervisor.date' | translate }}" class="font-medium" row="0" col="0" />
+                <Label text="{{ task.formattedDate }}" class="text-right" row="0" col="1" />
+                
+                <Label text="{{ 'supervisor.time' | translate }}" class="font-medium" row="1" col="0" />
+                <Label text="{{ task.formattedTime }}" class="text-right" row="1" col="1" />
+                
+                <Label text="{{ 'supervisor.duration' | translate }}" class="font-medium" row="2" col="0" />
+                <Label text="{{ task.formattedDuration }}" class="text-right" row="2" col="1" />
+            </GridLayout>
+            
+            <StackLayout class="bg-white p-4 rounded-lg shadow-md" visibility="{{ task.location_lat ? 'visible' : 'collapsed' }}">
+                <Label text="{{ 'supervisor.location' | translate }}" class="font-medium" />
+                <Label text="{{ task.location_lat }}, {{ task.location_lng }}" class="text-center" textWrap="true" />
+            </StackLayout>
+            
+            <StackLayout class="bg-white p-4 rounded-lg shadow-md" visibility="{{ task.voice_notes ? 'visible' : 'collapsed' }}">
+                <Label text="{{ 'supervisor.notes' | translate }}" class="font-medium" />
+                <Label text="{{ task.voice_notes }}" class="text-center" textWrap="true" />
+            </StackLayout>
+            
+            <StackLayout class="bg-white p-4 rounded-lg shadow-md" visibility="{{ task.photo_url ? 'visible' : 'collapsed' }}">
+                <Label text="{{ 'supervisor.photo' | translate }}" class="font-medium" />
+                <Image src="{{ task.photo_url }}" class="w-full h-64 rounded-lg" stretch="aspectFill" />
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</Page>

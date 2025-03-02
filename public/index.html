@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TerraTime - Grounds Maintenance App</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="phone-frame">
+      <div class="phone-screen">
+        <div class="app-header">
+          <h1>TerraTime - Grounds</h1>
+        </div>
+        
+        <div id="login-screen" class="screen active">
+          <div class="logo">
+            <img src="https://i.imgur.com/Oa3kNRH.png" alt="TerraTime Logo">
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" placeholder="Enter your phone number">
+          </div>
+          <button id="send-code-btn" class="btn primary">Send Code</button>
+          
+          <div id="verification-form" class="hidden">
+            <div class="form-group">
+              <label for="code">Verification Code</label>
+              <input type="number" id="code" placeholder="Enter verification code">
+            </div>
+            <button id="verify-btn" class="btn primary">Verify Code</button>
+            <button id="signup-btn" class="btn secondary hidden">Sign Up</button>
+          </div>
+        </div>
+        
+        <div id="worker-screen" class="screen">
+          <div class="task-grid">
+            <div class="task-item" data-task="mowing">
+              <img src="https://cdn.jsdelivr.net/gh/stackblitz/stackblitz-images@main/mowing.png" alt="Mowing">
+              <span>Mowing</span>
+            </div>
+            <div class="task-item" data-task="trash">
+              <img src="https://cdn.jsdelivr.net/gh/stackblitz/stackblitz-images@main/trash.png" alt="Trash Collection">
+              <span>Trash Collection</span>
+            </div>
+            <div class="task-item" data-task="trimming">
+              <img src="https://cdn.jsdelivr.net/gh/stackblitz/stackblitz-images@main/trimming.png" alt="Trimming">
+              <span>Trimming</span>
+            </div>
+            <div class="task-item" data-task="blowing">
+              <img src="https://cdn.jsdelivr.net/gh/stackblitz/stackblitz-images@main/blowing.png" alt="Leaf Blowing">
+              <span>Leaf Blowing</span>
+            </div>
+            <div class="task-item wide" data-task="safety">
+              <img src="https://cdn.jsdelivr.net/gh/stackblitz/stackblitz-images@main/safety.png" alt="Safety Inspection">
+              <span>Safety Inspection</span>
+            </div>
+          </div>
+        </div>
+        
+        <div id="task-screen" class="screen">
+          <div class="task-details">
+            <img id="task-image" src="" alt="Task">
+            <h2 id="task-title"></h2>
+            <div class="timer">00:00:00</div>
+            <div class="task-controls">
+              <button id="start-pause-btn" class="btn primary">Start Work</button>
+              <button id="stop-btn" class="btn danger hidden">Stop</button>
+            </div>
+          </div>
+        </div>
+        
+        <div id="task-completion-screen" class="screen">
+          <div class="completion-details">
+            <h2>Task Completed</h2>
+            <p class="completion-summary">
+              <span id="completion-task-name"></span>
+              <span id="completion-duration"></span>
+            </p>
+            
+            <div class="completion-actions">
+              <div class="action-card">
+                <img src="https://i.ibb.co/Qf9Vf0F/camera-gear-icon.png" alt="Camera" class="custom-icon">
+                <h3>Take Photo</h3>
+                <button id="take-photo-btn" class="btn secondary">Take Photo</button>
+                <div id="photo-preview" class="preview-container hidden">
+                  <img id="photo-preview-img" src="" alt="Photo Preview">
+                  <span class="preview-label">Photo added</span>
+                </div>
+              </div>
+              
+              <div class="action-card">
+                <img src="https://i.ibb.co/Jt1NJcB/microphone-gear-icon.png" alt="Voice" class="custom-icon">
+                <h3>Add Voice Note</h3>
+                <button id="record-voice-btn" class="btn secondary">Record</button>
+                <div id="voice-preview" class="preview-container hidden">
+                  <div class="voice-wave">
+                    <span></span><span></span><span></span><span></span><span></span>
+                  </div>
+                  <span class="preview-label">Voice note added</span>
+                </div>
+              </div>
+            </div>
+            
+            <button id="submit-task-btn" class="btn primary">Submit Task</button>
+          </div>
+        </div>
+        
+        <div id="supervisor-screen" class="screen">
+          <div class="tabs">
+            <button class="tab-btn active" data-tab="workers">Workers</button>
+            <button class="tab-btn" data-tab="tasks">Tasks</button>
+            <button class="tab-btn" data-tab="reports">Reports</button>
+          </div>
+          
+          <div id="workers-tab" class="tab-content active">
+            <div class="worker-list">
+              <div class="worker-item">
+                <img src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png" alt="Worker">
+                <div class="worker-info">
+                  <h3>John Doe</h3>
+                  <p>+1 555-123-4567</p>
+                </div>
+                <span class="chevron">›</span>
+              </div>
+              <div class="worker-item">
+                <img src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png" alt="Worker">
+                <div class="worker-info">
+                  <h3>Jane Smith</h3>
+                  <p>+1 555-987-6543</p>
+                </div>
+                <span class="chevron">›</span>
+              </div>
+            </div>
+          </div>
+          
+          <div id="tasks-tab" class="tab-content">
+            <div class="task-list">
+              <div class="task-list-item">
+                <img src="https://cdn.jsdelivr.net/gh/stackblitz/stackblitz-images@main/mowing.png" alt="Mowing">
+                <div class="task-info">
+                  <h3>John Doe</h3>
+                  <p>Mowing</p>
+                </div>
+                <div class="task-meta">
+                  <p>03/01/2025</p>
+                  <p>2h 15m</p>
+                </div>
+              </div>
+              <div class="task-list-item">
+                <img src="https://cdn.jsdelivr.net/gh/stackblitz/stackblitz-images@main/trimming.png" alt="Trimming">
+                <div class="task-info">
+                  <h3>Jane Smith</h3>
+                  <p>Trimming</p>
+                </div>
+                <div class="task-meta">
+                  <p>03/01/2025</p>
+                  <p>1h 30m</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div id="reports-tab" class="tab-content">
+            <p class="coming-soon">Coming Soon</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="helper-links">
+    <a href="/image-upload" target="_blank">Image Upload Helper</a>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
